@@ -201,7 +201,7 @@ local cloneind = nil
 local Selection = game:GetService("Selection")
 local object
 local isOn = false
-local UI = game.InsertService:LoadAsset("10066922931").UI
+local UI = script.UI
 UI.Parent = game:GetService("CoreGui")
 UI.Enabled = false
 local getSelected 
@@ -212,7 +212,6 @@ local AnimationLength = nil
 local propertieschanged = {}
 
 Button.Click:Connect(function()
-	print(isOn)
 	if isOn == false then
 		UI.Enabled = true
 		isOn = true
@@ -259,7 +258,6 @@ main.Next1.MouseButton1Up:Connect(function()
 			end
 		end
 	end
-	print(oldProperties)
 end)
 
 main.Next2.MouseButton1Up:Connect(function()
@@ -279,7 +277,6 @@ main.Next2.MouseButton1Up:Connect(function()
 	clone.Name = "CARPECTCLN" .. cloneind
 	clone.Parent = game.ReplicatedStorage:WaitForChild("CARPECTSRC")
 	clone:ClearAllChildren()
-	print(propertieschanged)
 	main.Done1.Visible = true
 	main.T3.Visible = true
 	main.Next2.Visible = false
@@ -322,8 +319,6 @@ main.Done1.MouseButton1Up:Connect(function()
 	for i,v in pairs(propertieschanged) do
 		getGoal[#getGoal + 1] = tostring(tostring(i) .. " = " .. "game.ReplicatedStorage.CARPECTSRC.".. "CARPECTCLN" .. cloneind .. "." .. tostring(i))
 	end
-	print(getParent)
-	print(getGoal)
 	output = TweenService .. ":Create(" .. table.concat(getParent,".") ..", TweenInfo.new(" .. AnimationLength .. "), {" .. table.concat(getGoal, ", ") .. "}):Play()"
 	main.Reset.Visible = true
 	main.T4.Visible = true
